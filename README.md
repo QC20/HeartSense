@@ -23,7 +23,37 @@ HeartSense is an interactive LED ring that visually represents your heartbeats i
 2. Attach the LED ring to the microcontroller.
 3. Ensure all connections are secure and powered correctly.
 
-### Software Setup
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/heartbeat-indicator.git
+## Pulse Sensor: Technical Specifications
+Here are the technical specifications:
+
+| Parameter                    | Value            |
+|------------------------------|------------------|
+| **VCC** (Voltage)            | 3.0 – 5.5V       |
+| **IMax** (Maximum Current)   | < 4mA            |
+| **VOut** (Output Voltage)    | 0.3V to Vcc      |
+| **LED Output** (Wavelength)  | 565nm            |
+| **Sensor Input** (Wavelength)| 525nm            |
+| **Dimensions** (L x W, PCB)  | 15.8mm (0.625")  |
+| **Lead Length**              | 20cm (7.8")      |
+
+
+## How Does a Pulse Sensor Work?
+The theory behind optical heart-rate sensors is straightforward. If you've ever shined a flashlight through your fingers and observed your heartbeat pulsing, the concept of optical heart-rate pulse sensors becomes clear.
+
+<div align="center">
+  ![Pulse Sensor Working](./assets/img/PhotoSensor.png)
+</div>
+
+A pulse sensor, like any other optical heart-rate sensor, works by shining a green light (~ 550nm) on the finger and measuring the amount of reflected light with a [photosensor](https://en.wikipedia.org/wiki/Photodetector).
+
+<div align="center">
+  ![Photoplethysmogram](./assets/img/Photoplethysmogram.png)
+</div>
+
+This optical pulse detection technique is known as a [Photoplethysmogram](https://en.wikipedia.org/wiki/Photoplethysmogram).
+
+The oxygenated hemoglobin in arterial blood absorbs green light. The redder the blood (the higher the hemoglobin), the greater the absorption of green light. With each heartbeat, blood is pumped through the finger, causing a change in the amount of reflected light, which produces a waveform at the photosensor’s output.
+
+As you keep shining light and taking photosensor readings, you quickly begin to obtain a heartbeat pulse reading.
+
+This signal from the photosensor is typically small and noisy; therefore, it is passed through an R/C filter network and then amplified with an [Operational Amplifier](https://en.wikipedia.org/wiki/Operational_amplifier) to create a signal that is significantly larger, cleaner, and easier to detect.
