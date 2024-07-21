@@ -27,7 +27,7 @@ HeartSense is an interactive LED ring that visually represents your heartbeats i
 Here are the technical specifications:
 
 | Parameter                    | Value            |
-|------------------------------|------------------|
+|------------------------------|:----------------:|
 | **VCC** (Voltage)            | 3.0 – 5.5V       |
 | **IMax** (Maximum Current)   | < 4mA            |
 | **VOut** (Output Voltage)    | 0.3V to Vcc      |
