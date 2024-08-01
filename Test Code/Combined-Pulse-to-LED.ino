@@ -1,3 +1,10 @@
+/*
+  This Arduino sketch reads pulse signals from an analog (cheap) PPG pulse sensor connected to A0.
+  It detects heartbeats, calculates BPM, and visualizes each beat by lighting up
+  a NeoPixel LED ring. The code uses dynamic thresholding to adapt to varying
+  signal strengths and prints real-time data to the Serial monitor for debugging.
+*/
+
 #include <Adafruit_NeoPixel.h>
 
 const int PulseWire = A0;

@@ -5,16 +5,19 @@
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 
-// Brightness levels for different parts of the ECG
-#define BASELINE_BRIGHTNESS 5
-#define P_WAVE_BRIGHTNESS 40
-#define QRS_PEAK_BRIGHTNESS 255
-#define T_WAVE_BRIGHTNESS 100
-#define U_WAVE_BRIGHTNESS 20
+// Brightness levels for different parts of the ECG (reduced to 1/3)
+#define BASELINE_BRIGHTNESS 2
+#define P_WAVE_BRIGHTNESS 13
+#define QRS_PEAK_BRIGHTNESS 85
+#define T_WAVE_BRIGHTNESS 33
+#define U_WAVE_BRIGHTNESS 7
+
+// Overall brightness control (0-255)
+#define OVERALL_BRIGHTNESS 128
 
 void setup() {
   pixels.begin();
-  pixels.setBrightness(255);  // Set to full brightness, we'll control it in the color
+  pixels.setBrightness(OVERALL_BRIGHTNESS);  // Set overall brightness
 }
 
 void loop() {
@@ -27,14 +30,14 @@ void showECGWave(int cycleDuration) {
   int stepDuration = cycleDuration / steps;
 
   for (int i = 0; i < steps; i++) {
-    int brightness = getECGBrightness(i, steps);
-    setAllLEDs(brightness);
+    int intensity = getECGIntensity(i, steps);
+    setAllLEDs(intensity);
     pixels.show();
     delay(stepDuration);
   }
 }
 
-int getECGBrightness(int step, int totalSteps) {
+int getECGIntensity(int step, int totalSteps) {
   if (step < totalSteps * 0.15) {  // P wave
     return map(step, 0, totalSteps * 0.15, BASELINE_BRIGHTNESS, P_WAVE_BRIGHTNESS);
   } else if (step < totalSteps * 0.25) {  // PR segment
@@ -57,8 +60,8 @@ int getECGBrightness(int step, int totalSteps) {
   }
 }
 
-void setAllLEDs(int brightness) {
+void setAllLEDs(int intensity) {
   for (int i = 0; i < NUMPIXELS; i++) {
-    pixels.setPixelColor(i, pixels.Color(brightness, 0, 0));
+    pixels.setPixelColor(i, pixels.Color(intensity, 0, 0));
   }
 }

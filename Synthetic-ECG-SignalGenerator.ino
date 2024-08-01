@@ -1,0 +1,41 @@
+/*
+  This code simulates the output of an Electrocardiogram (EKG/ECG) signal by printing a predefined array of 
+  EKG values to the serial monitor. The array 'ekg' contains 100 samples that represent an EKG waveform. 
+  In the loop, each value is printed with a 10 ms delay between each print to simulate a real-time EKG signal.
+
+  How to use:
+  - Upload this code to your Arduino board.
+  - Open the Serial Monitor (Ctrl+Shift+M or Tools -> Serial Monitor in the Arduino IDE).
+  - Set the baud rate to 115200.
+  - You will see the simulated EKG values printed out one by one.
+  - This can be useful for testing how an Arduino program processes EKG data or for simulating EKG signals in a project.
+*/
+
+const int EKG_SIZE = 100;
+double ekg[EKG_SIZE] = {
+  0.19136, 0.19136, 0.27337, 0.41006, 0.54675, 0.74282, 2.0672, 4.8761, 9.1102, 13.701, 
+  18.291, 22.881, 27.472, 30.226, 29.92, 26.554, 21.963, 17.373, 12.782, 8.1921, 
+  4.2015, 1.7103, 0.7185, 0.62638, 0.53427, 0.44215, 0.35004, 0.25792, 0.16581, -0.9667, 
+  -6.2608, -14.335, -14.306, -1.4965, 22.712, 48.475, 71.736, 76.651, 60.719, 26.441, 
+  -10.339, -44.249, -57.116, -46.071, -20.956, -4.5927, 0.149, 0.24213, 0.33526, 0.42839, 
+  0.52151, 0.61464, 0.70777, 0.80089, 0.89402, 0.98715, 1.0803, 1.1734, 1.2665, 1.3597, 
+  1.4528, 1.5459, 1.9248, 3.0181, 4.8258, 7.0621, 9.2985, 11.535, 13.771, 15.65, 
+  16.097, 15.053, 12.877, 10.64, 8.404, 6.1676, 4.0046, 2.3792, 1.3647, 0.88781, 
+  0.48964, 0.1937, 0.032284, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+void setup() {
+  // Initialize the serial communication with a baud rate of 115200
+  Serial.begin(115200);
+}
+
+void loop() {
+  // Iterate through the EKG array and print each value to the Serial Monitor
+  for (int k = 0; k < EKG_SIZE; k++) {
+    Serial.println(ekg[k], 4); // Print each EKG value with 4 decimal places
+    delay(10);                 // Delay 10 ms between prints to simulate real-time data
+  }
+  
+  // Optional: You can add a delay or reset the index to continuously loop through the EKG data
+  // delay(1000);  // Delay 1 second before restarting the loop
+}
