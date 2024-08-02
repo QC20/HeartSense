@@ -4,11 +4,11 @@
   In the loop, each value is printed with a 10 ms delay between each print to simulate a real-time EKG signal.
 
   How to use:
-  - Upload this code to your Arduino board.
+  - Upload this code to your Arduino/MCU board.
   - Open the Serial Monitor (Ctrl+Shift+M or Tools -> Serial Monitor in the Arduino IDE).
   - Set the baud rate to 115200.
   - You will see the simulated EKG values printed out one by one.
-  - This can be useful for testing how an Arduino program processes EKG data or for simulating EKG signals in a project.
+  - This can be useful for testing how an Arduino/MCU program processes EKG data or for simulating EKG signals in a project.
 */
 
 const int EKG_SIZE = 100;

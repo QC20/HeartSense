@@ -1,0 +1,7 @@
+
+# Ignore .ino files 
+./ECG-WaveformEmulator.ino
+
+
+# Ignore folders
+./Insperation-for-uECG/
