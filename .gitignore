@@ -1,7 +1,11 @@
 
+# Ignore txt files
+/Prompts.txt
+
+
 # Ignore .ino files 
 /ECG-WaveformEmulator.ino
 
 
 # Ignore folders
-Insperation-for-uECG/
+/Insperation-for-uECG
