@@ -66,7 +66,7 @@ This implementation provides a more dynamic visualization of the ECG signal, all
 The ECG data used in these sketches is synthetic and represents a typical ECG waveform. You can modify the delay or array values to suit your specific needs.
 
 <div align="center">
-  ![Pulse Sensor Working](./assets/img/ECG-Graph.png)
+  ![Pulse Sensor Working](assets/img/ECG-Graph.png)
 </div>
 
 Feel free to experiment with these sketches and adapt them to your specific requirements or hardware configurations.
