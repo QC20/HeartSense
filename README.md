@@ -93,8 +93,12 @@ This signal from the photosensor is typically small and noisy; therefore, it is 
 ## The Human Heartbeat
 
 <div align="center">
+  
+  <img src="assets/img/AD8232-ECG-Sensor-Graph.png" 
+       alt="Pulse Sensor Working" 
+       title="This graph shows the output of the AD8232 ECG sensor."
+       style="width: 50%; height: auto;">
 
-  ![Pulse Sensor Working](assets/img/AD8232-ECG-Sensor-Graph.png "This graph shows the output of the AD8232 ECG sensor.")
 </div>
 
 **P wave** - It is the trailing wave on the left of the QRS complex.
