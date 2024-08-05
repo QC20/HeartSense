@@ -93,7 +93,7 @@ This signal from the photosensor is typically small and noisy; therefore, it is 
   ![Pulse Sensor Working](assets/img/AD8232-ECG-Sensor-Graph.png)
 </div>
 
-<img align="center" src="assets/img/AD8232-ECG-Sensor-Graph.png)" alt="The 22818 Adafruit Neopixel in full action!">
+<img align="center" src="assets/img/AD8232-ECG-Sensor-Graph.png" alt="The 22818 Adafruit Neopixel in full action!">
 
 
 **P wave** - It is the trailing wave on the left of the QRS complex.
