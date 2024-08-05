@@ -4,4 +4,6 @@ The "WS2812" is one type of programmable RGB LED. It is sold in the form of bars
 
 This subfolder includes example code demonstrating the functionality of the NeoPixel. It provides a starting point for using this device to creatively visualize human heartbeat data through single-color pixel intensity and brightness.
 
-<div align\="center"\> !\[Pulse Sensor Working\](assets/img/NeoPixel-12LED_RING.png) </div\>
+<div align="center">
+  <img src="assets/img/NeoPixel-12LED_RING.png" alt="Pulse Sensor Working" />
+</div>
