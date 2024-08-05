@@ -1,4 +1,4 @@
-# HeartSense - Indicator Using ECG
+# HeartSense - Illuminating Your Heart's Rhythm
 
 ## Pseudo Code logic (should you stumble upon this project these are my preliminary ideas as to how this could be done)
 
