@@ -5,11 +5,11 @@ The "WS2812" is one type of programmable RGB LED. It is sold in the form of bars
 
 This subfolder includes example code demonstrating the functionality of the NeoPixel. It provides a starting point for using this device to creatively visualize human heartbeat data through single-color pixel intensity and brightness.
 
-<p align="center">
+<div align="center">
   <a href="https://www.arduinoslovakia.eu/page/ws2812?lang=en" target="_blank">
     <img src="assets/img/NeoPixel-12LED_RING.png" 
          alt="The 22818 Adafruit Neopixel in full action!"
          title="Click to learn more about the 22818 Adafruit Neopixel."
-         width="50%">
+         style="width: 50%; height: auto;">
   </a>
-</p>
+</div>
