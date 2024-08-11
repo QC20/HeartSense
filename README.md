@@ -46,6 +46,12 @@ HeartSense is an interactive LED ring that visually represents your heartbeats i
 - Power supply
 - Connecting wires and resistors
 
+
+## Connectivity
+
+
+
+
 ## Installation
 
 ### Hardware Setup
