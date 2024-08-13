@@ -82,6 +82,10 @@ The theory behind optical heart-rate sensors is straightforward. If you've ever 
   ![Pulse Sensor Working](./assets/gif/Pulse-Sensor-Working.gif)
 </div>
 
+<div align="center">
+  ![Pulse Sensor Working](./assets/gif/heart-ECG.gif)
+</div>
+
 A pulse sensor, like any other optical heart-rate sensor, works by shining a green light (~ 550nm) on the finger and measuring the amount of reflected light with a [photosensor](https://en.wikipedia.org/wiki/Photodetector).
 
 <div align="center">
