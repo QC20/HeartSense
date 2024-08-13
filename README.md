@@ -101,8 +101,8 @@ This signal from the photosensor is typically small and noisy; therefore, it is 
 <div align="center">
   <img src="assets/img/ECG-Graph.png" 
        alt="ECG Graph Display" 
-       title="This graph shows ECG data."
-       style="width: 50%; height: auto;">
+       title="This graph shows ECG signal data."
+       style="width: 25%; height: auto;">
 </div>
 
 
@@ -112,3 +112,26 @@ This signal from the photosensor is typically small and noisy; therefore, it is 
 **U wave** - It is not always observed due to its low peak value.
 
 I have created a [synthetic ECG signal](https://wokwi.com/projects/405107217963893761) for you to play around with to understand the type of input we can expect.
+
+
+## Heart Rate Variability (HRV)
+
+Heart Rate Variability (HRV) is a crucial metric in understanding heart health and overall well-being. Contrary to what one might initially assume, a healthy heart doesn't beat with perfect regularity like a metronome. Instead, there are slight variations in the time intervals between heartbeats, even when at rest.
+
+### Understanding HRV
+
+To use an analogy, if the heart were an engine:
+- At idle, it doesn't maintain a steady RPM. The intervals between beats have a pseudo-random variability.
+- When working at an increased rate, these intervals become less stochastic and maintain a steadier rhythm.
+
+The nature and significance of HRV are subjects of ongoing scientific research. Its implications for health are profound, as explained by [Bryn Farnthworth](https://imotions.com/blog/learning/best-practice/heart-rate-variability/):
+
+> "One of the first things to know when understanding heart rate is that the most informative metric relies not just on the heart rate, but how much the heart rate varies. What's often at first glance counter-intuitive about this metric is that a higher heart rate variability (HRV) is associated with good health – the more your heart jumps around (to an extent, of course), the readier you are for action. On the other hand, a low HRV is associated with ill health – it is a significant predictor of mortality from several diseases."
+
+### Importance of HRV
+
+1. **Indicator of Health**: A higher HRV generally indicates better cardiovascular fitness and a more responsive autonomic nervous system.
+2. **Stress Marker**: Lower HRV can be an indicator of stress or overtraining in athletes.
+3. **Predictive Value**: HRV can be a predictor of various health issues, making it a valuable metric for preventive healthcare.
+
+In the context of HeartSense, monitoring HRV could provide users with deeper insights into their overall health and stress levels, beyond just tracking heart rate.
