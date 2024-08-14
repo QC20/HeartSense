@@ -46,8 +46,13 @@ HeartSense is an interactive LED ring that visually represents your heartbeats i
 - Power supply
 - Connecting wires and resistors
 
+## Schematics
 
-## Connectivity
+
+**Important note:** you can't connect MOSI, MISO, SCK wires to any other Arduino pins. SPI hardware sits on D11, D12, D13 and won't work if not connected there. All other pins can be changed (if you'll make corresponding changes in the program).
+
+
+### Connectivity
 
 
 
