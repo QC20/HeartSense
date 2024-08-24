@@ -25,7 +25,9 @@ Possible ideas:
 - Pixel intensity levels can be changed
 - The various LEDs can denote different things
   - If a LED ring with center LEDs is chosen it can have slightly higer values than the outer LEDs (or vice versa)
--
+<
+
+
 
 ## Overview
 
