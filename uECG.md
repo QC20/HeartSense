@@ -6,8 +6,21 @@
 
 
 
-The device has two radio modes:
+### Device Radio Modes:
 
-Pink LED: nRF24 mode (the mode you want).
-Blue LED: BLE mode (the default mode at startup).
-After the initial startup blinks, the LED will blink three times to indicate the current mode. To switch to Pink (nRF24) mode, you'll likely need to follow a specific procedure, such as pressing a button or changing a setting.
+1. **Pink LED (nRF24 Mode)**:  
+   - The LED blinks pink three times after startup to indicate this mode.
+   - This is the mode required for nRF24 communication.
+   - Switch to this mode by pressing a button or changing a setting if the device is in a different mode.
+
+
+2. **Blue LED (BLE Mode)**:  
+   - Default mode at startup for Bluetooth Low Energy.
+   - Indicated by three blue blinks after startup.
+   - Switch from BLE mode as needed by following the procedure.
+
+3. **Green LED (USB Receiver Mode)**:  
+   - Required for connecting to the USB receiver.
+   - Press the button until the LED blinks green three times.
+
+*Note: If the LED blinks three red times in addition to the expected mode blinks, the battery is low. If using a CR2032 coin cell, it can be used until it stops working. If using a LiPo battery, recharge it before use.*
