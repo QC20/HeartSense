@@ -4,6 +4,8 @@
 - this program receives data from uECG device (auto connects to a nearby device) and draws them on attached screen. It can be quite easily adjusted to print ECG stream into serial monitor instead
 
 
+In fact rf-nano is a rather good option here - you likely will get more clean data with it, without any additional effort (example provided with uECG arduino library works with it just fine - you only need to set proper EN, CS pins in the code). But BLE mode via ESP32 would work too
+
 
 
 ### Device Radio Modes:
