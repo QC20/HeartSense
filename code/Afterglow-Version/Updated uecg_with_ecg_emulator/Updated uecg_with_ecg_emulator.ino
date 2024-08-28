@@ -1,13 +1,14 @@
 #include <uECG.h>
-#include "ImprovedECGEmulator.h"
+#include "AfterglowECGEmulator.h"
 
 #define PIN 6
 #define NUMPIXELS 12
 
-int rf_cen = 8; // nRF24 chip enable pin
-int rf_cs = 9;  // nRF24 CS pin
+// This is the correct setup for the following RF-Nano V3.0 clone: 
+int rf_cen = 8; //nRF24 chip enable pin
+int rf_cs = 9; //nRF24 CS pin
 
-ImprovedECGEmulator ecg(PIN, NUMPIXELS);
+ECGEmulator ecg(PIN, NUMPIXELS);
 
 unsigned long lastBeatTime = 0;
 int lastRRid = -1;
@@ -29,12 +30,12 @@ void loop() {
     lastRRid = currentRRid;
     int bpm = uECG.getBPM();
     int rr = uECG.getLastRR();
-
+    
     Serial.print("BPM: ");
     Serial.print(bpm);
     Serial.print(", RR: ");
     Serial.println(rr);
-
+    
     playingECG = true;
     ecgStartTime = currentMillis;
   }
@@ -42,8 +43,8 @@ void loop() {
   if (playingECG) {
     int currentBPM = uECG.getBPM();
     ecg.update(currentMillis - ecgStartTime, currentBPM);
-
-    if (currentMillis - ecgStartTime >= ecg.getCycleDuration(currentBPM)) {
+    
+    if (currentMillis - ecgStartTime >= ECGEmulator::CYCLE_DURATION) {
       playingECG = false;
       ecg.setAllLEDs(0);
       ecg.show();

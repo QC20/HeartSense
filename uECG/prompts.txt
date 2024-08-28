@@ -10,7 +10,7 @@ Before you go ahead and do any implementations please list a couple of ideas as 
 
 ##Answer
 
-**1. Intensity Modulation:** Temporarily increase the overall brightness of the LEDs when a significant heart rate change is detected. This could make the entire pattern brighter for a short period, drawing attention to the change.
+**1.    
 **Pulse Width Modulation:** Rapidly alternate between the normal ECG pattern and a slightly brighter version, creating a pulsing effect when a sudden change is detected.
 **Frequency Modulation:** Slightly speed up or slow down the ECG animation cycle when a significant change is detected, while still maintaining the correct beats per minute.
 **2. "Afterglow" Effect:** When a sudden change is detected, make the R wave (peak) of the ECG pattern linger at full brightness for a moment longer than usual before fading.

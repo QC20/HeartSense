@@ -2,7 +2,6 @@
 #define ECG_EMULATOR_H
 
 #include <Adafruit_NeoPixel.h>
-#include <vector>
 
 class ECGEmulator {
 public:
@@ -30,7 +29,8 @@ private:
     Adafruit_NeoPixel pixels;
     unsigned long lastUpdateTime;
     uint16_t currentStep;
-    std::vector<int> recentHeartRates;
+    int recentHeartRates[MAX_RECENT_RATES]; // Fixed-size array
+    uint8_t recentRateCount; // To keep track of the number of elements in the array
     unsigned long lastHeartRateUpdateTime;
     int currentAfterglowDuration;
     bool isAfterglowActive;

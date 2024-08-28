@@ -1,7 +1,7 @@
 #include <uECG.h>
 #include "ECGEmulator.h"
 
-#define PIN 6
+#define PIN 5
 #define NUMPIXELS 12
 
 int rf_cen = 8; //nRF24 chip enable pin
