@@ -18,3 +18,16 @@ Before you go ahead and do any implementations please list a couple of ideas as 
 **3. Brightness Ramping:** Gradually increase the overall brightness of the LEDs over a few seconds when a change is detected, then slowly fade back to normal.
 **Extended QRS Complex:** Temporarily widen the QRS complex (the main spike) of the ECG pattern, making it more prominent for a few cycles after a significant change is detected.
 **Baseline Shift:** Temporarily raise the baseline brightness of the entire pattern when a sudden change is detected, then gradually return it to normal.
+
+
+
+# Ask about using HRV
+
+Please consider the following arduino project. Now, I use the bpm to determine whether the LED should issue a particular response depending on whether the heart rate BPM is going up or slowing down. 
+
+As you can see I can also fetch the HRV from the heart data. 
+
+I am considering whether I can use this data metric as well to do something that will help me determine whther the person is actually starting to stress or is starting to relax. The core idea of this project is to figure out a way to protray this change in heart rate and find a way to show that with LED in a single uniform way. 
+
+Can you give me some suggestions as to how I can make use of the HRV to make my project better. 
+
