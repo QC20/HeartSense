@@ -8,25 +8,23 @@ public:
     HapticECGEmulator(uint8_t pin);
     void begin();
     void update(unsigned long currentMillis);
-    void setHapticIntensity(int intensity);
     void setBPM(int bpm);
-    int getBPM() const;
+    inline int getBPM() const { return currentBPM; }
 
 private:
-    static const uint8_t BASELINE_INTENSITY = 0;
-    static const uint8_t P_WAVE_INTENSITY = 50;
-    static const uint8_t QRS_PEAK_INTENSITY = 255;
-    static const uint8_t T_WAVE_INTENSITY = 100;
-    static const uint16_t TOTAL_STEPS = 95;
+    static const uint8_t MAX_INTENSITY = 255;
+    static const uint16_t MIN_PULSE_DURATION_MS = 100; // Minimum pulse duration in milliseconds
+    static const uint16_t PULSE_INTERVAL_PERCENT = 30; // Percentage of beat duration for pulse interval
 
     uint8_t hapticPin;
     unsigned long lastUpdateTime;
-    uint16_t currentStep;
+    unsigned long beatDuration;
+    unsigned long pulseDuration;
+    unsigned long pulseInterval;
+    bool isVibrating;
     int currentBPM;
-    unsigned long stepDuration;
 
-    int getECGIntensity(uint16_t step, uint16_t totalSteps);
-    void updateStepDuration();
+    void updateTimings();
 };
 
 #endif
