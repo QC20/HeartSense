@@ -2,17 +2,15 @@
 #include <Arduino.h>
 
 HapticECGEmulator::HapticECGEmulator(uint8_t pin)
-    : hapticPin(pin), lastUpdateTime(0), currentStep(0), cycleDuration(800) {}
+    : hapticPin(pin), lastUpdateTime(0), currentStep(0), currentBPM(60), stepDuration(10) {}
 
 void HapticECGEmulator::begin() {
     pinMode(hapticPin, OUTPUT);
     analogWrite(hapticPin, 0);
+    updateStepDuration();
 }
 
 void HapticECGEmulator::update(unsigned long currentMillis) {
-    static const uint16_t TOTAL_STEPS = 95;
-    unsigned long stepDuration = cycleDuration / TOTAL_STEPS;
-
     if (currentMillis - lastUpdateTime >= stepDuration) {
         int intensity = getECGIntensity(currentStep, TOTAL_STEPS);
         setHapticIntensity(intensity);
@@ -22,14 +20,23 @@ void HapticECGEmulator::update(unsigned long currentMillis) {
     }
 }
 
-void HapticECGEmulator::updateCycleDuration(int bpm) {
-    if (bpm > 0) {
-        cycleDuration = 60000 / bpm;  // Convert BPM to milliseconds
+void HapticECGEmulator::setBPM(int bpm) {
+    if (bpm > 0 && bpm <= 300) {  // Set a reasonable upper limit for BPM
+        currentBPM = bpm;
+        updateStepDuration();
     }
 }
 
-uint16_t HapticECGEmulator::getCycleDuration() const {
-    return cycleDuration;
+int HapticECGEmulator::getBPM() const {
+    return currentBPM;
+}
+
+void HapticECGEmulator::updateStepDuration() {
+    // Calculate the duration of one heartbeat in milliseconds
+    unsigned long beatDuration = 60000 / currentBPM;
+    
+    // Calculate the duration of each step within the heartbeat
+    stepDuration = beatDuration / TOTAL_STEPS;
 }
 
 int HapticECGEmulator::getECGIntensity(uint16_t step, uint16_t totalSteps) {

@@ -8,10 +8,7 @@ int rf_cs = 9; //nRF24 CS pin
 
 HapticECGEmulator ecg(HAPTIC_PIN);
 
-unsigned long lastBeatTime = 0;
 int lastRRid = -1;
-bool playingECG = false;
-unsigned long ecgStartTime = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -29,32 +26,19 @@ void loop() {
     lastRRid = currentRRid;
     int bpm = uECG.getBPM();
     int rr = uECG.getLastRR();
-    
-    // Update cycle duration based on the new BPM
-    ecg.updateCycleDuration(bpm);
-    
+
+    // Update BPM for the haptic emulator
+    ecg.setBPM(bpm);
+
     // Print data for each beat
     Serial.print("BPM: ");
     Serial.print(bpm);
     Serial.print(", RR: ");
     Serial.print(rr);
-    Serial.print(", Cycle Duration: ");
-    Serial.println(ecg.getCycleDuration());
-    
-    // Start playing the ECG waveform
-    playingECG = true;
-    ecgStartTime = currentMillis;
+    Serial.print(", Emulator BPM: ");
+    Serial.println(ecg.getBPM());
   }
 
-  if (playingECG) {
-    // Update ECG emulator
-    ecg.update(currentMillis - ecgStartTime);
-    
-    // Check if we've completed one ECG cycle
-    if (currentMillis - ecgStartTime >= ecg.getCycleDuration()) {
-      playingECG = false;
-      // Turn off haptic module after the cycle
-      ecg.setHapticIntensity(0);
-    }
-  }
+  // Update ECG emulator
+  ecg.update(currentMillis);
 }
