@@ -1,7 +1,7 @@
-#include "Afterglow-Jewel.h"
+#include "AfterglowJewelEmulator.h"
 #include <Arduino.h>
 
-HRVJewelEmulator::HRVJewelEmulator(uint8_t pin, uint16_t numPixels)
+AfterglowJewelEmulator::AfterglowJewelEmulator(uint8_t pin, uint16_t numPixels)
     : pixels(numPixels, pin, NEO_GRB + NEO_KHZ800), lastUpdateTime(0), currentStep(0),
       lastHRVUpdateTime(0), currentAfterglowDuration(0), isAfterglowActive(false), afterglowStartTime(0),
       movingAverageHRV(0), recentRRIntervalsIndex(0), isIntensityModulationActive(false), 
@@ -14,13 +14,13 @@ HRVJewelEmulator::HRVJewelEmulator(uint8_t pin, uint16_t numPixels)
     }
 }
 
-void HRVJewelEmulator::begin() {
+void AfterglowJewelEmulator::begin() {
     pixels.begin();
     pixels.setBrightness(10);
     pixels.show();
 }
 
-void HRVJewelEmulator::update(unsigned long currentMillis, int currentRRInterval) {
+void AfterglowJewelEmulator::update(unsigned long currentMillis, int currentRRInterval) {
     static const uint16_t TOTAL_STEPS = 95;
     uint16_t cycleDuration = getCycleDuration(currentRRInterval);
     unsigned long stepDuration = cycleDuration / TOTAL_STEPS;
@@ -45,21 +45,57 @@ void HRVJewelEmulator::update(unsigned long currentMillis, int currentRRInterval
     }
 }
 
-int HRVJewelEmulator::getECGBrightness(uint16_t step, uint16_t totalSteps) {
-    // ECG waveform generation logic remains the same
-    // ... (previous implementation)
+int AfterglowJewelEmulator::getECGBrightness(uint16_t step, uint16_t totalSteps) {
+    float progress = static_cast<float>(step) / totalSteps;
+    int brightness;
+
+    if (progress < 0.10f) {  // P wave
+        brightness = map(step, 0, totalSteps * 0.10, BASELINE_BRIGHTNESS, P_WAVE_BRIGHTNESS);
+    } else if (progress < 0.16f) {  // PR segment
+        brightness = map(step, totalSteps * 0.10, totalSteps * 0.16, P_WAVE_BRIGHTNESS, BASELINE_BRIGHTNESS);
+    } else if (progress < 0.20f) {  // Q wave
+        brightness = map(step, totalSteps * 0.16, totalSteps * 0.20, BASELINE_BRIGHTNESS, BASELINE_BRIGHTNESS - 5);
+    } else if (progress < 0.24f) {  // R wave
+        brightness = map(step, totalSteps * 0.20, totalSteps * 0.24, BASELINE_BRIGHTNESS - 5, QRS_PEAK_BRIGHTNESS);
+
+        if (isAfterglowActive && isRWavePortion(step, totalSteps)) {
+            unsigned long elapsedAfterglowTime = millis() - afterglowStartTime;
+            if (elapsedAfterglowTime < currentAfterglowDuration) {
+                brightness = QRS_PEAK_BRIGHTNESS;
+            } else {
+                isAfterglowActive = false;
+            }
+        }
+    } else if (progress < 0.28f) {  // S wave
+        brightness = map(step, totalSteps * 0.24, totalSteps * 0.28, QRS_PEAK_BRIGHTNESS, BASELINE_BRIGHTNESS - 10);
+    } else if (progress < 0.36f) {  // ST segment
+        brightness = map(step, totalSteps * 0.28, totalSteps * 0.32, BASELINE_BRIGHTNESS - 10, BASELINE_BRIGHTNESS);
+    } else if (progress < 0.52f) {  // T wave
+        float t_progress = (progress - 0.36f) / 0.20f;
+        brightness = BASELINE_BRIGHTNESS + (T_WAVE_BRIGHTNESS - BASELINE_BRIGHTNESS) * sin(t_progress * PI);
+    } else {  // Back to baseline
+        brightness = BASELINE_BRIGHTNESS;
+    }
+
+    return static_cast<int>(brightness * BRIGHTNESS_SCALE);
 }
 
-void HRVJewelEmulator::setLEDs(int brightness) {
-    // LED setting logic remains the same
-    // ... (previous implementation)
+void AfterglowJewelEmulator::setLEDs(int brightness) {
+    for (int i = 0; i < pixels.numPixels(); i++) {
+        if (i == 0) {  // Center LED
+            int centerBrightness = min(255, static_cast<int>(brightness * CENTER_LED_FACTOR));
+            pixels.setPixelColor(i, pixels.Color(centerBrightness, 0, 0));
+        } else {
+            pixels.setPixelColor(i, pixels.Color(brightness, 0, 0));
+        }
+    }
 }
 
-void HRVJewelEmulator::show() {
+void AfterglowJewelEmulator::show() {
     pixels.show();
 }
 
-void HRVJewelEmulator::updateHRV(int newRRInterval, unsigned long currentMillis) {
+void AfterglowJewelEmulator::updateHRV(int newRRInterval, unsigned long currentMillis) {
     if (currentMillis - lastHRVUpdateTime > hrvUpdateInterval) {
         updateMovingAverageHRV(newRRInterval);
 
@@ -88,33 +124,33 @@ void HRVJewelEmulator::updateHRV(int newRRInterval, unsigned long currentMillis)
     }
 }
 
-void HRVJewelEmulator::updateMovingAverageHRV(int newRRInterval) {
+void AfterglowJewelEmulator::updateMovingAverageHRV(int newRRInterval) {
     recentRRIntervals[recentRRIntervalsIndex] = newRRInterval;
     recentRRIntervalsIndex = (recentRRIntervalsIndex + 1) % WINDOW_SIZE;
 
     movingAverageHRV = calculateHRV();
 }
 
-bool HRVJewelEmulator::isSignificantChange(int newRRInterval) {
+bool AfterglowJewelEmulator::isSignificantChange(int newRRInterval) {
     if (movingAverageHRV == 0) return false;
     float currentHRV = calculateHRV();
     float change = abs(currentHRV - movingAverageHRV) / movingAverageHRV;
     return change > significantChangeThreshold;
 }
 
-bool HRVJewelEmulator::isRWavePortion(uint16_t step, uint16_t totalSteps) const {
+bool AfterglowJewelEmulator::isRWavePortion(uint16_t step, uint16_t totalSteps) const {
     float progress = static_cast<float>(step) / totalSteps;
     return progress >= 0.20f && progress < 0.24f;
 }
 
-int HRVJewelEmulator::applyIntensityModulation(int brightness) {
+int AfterglowJewelEmulator::applyIntensityModulation(int brightness) {
     if (isIntensityModulationActive) {
         brightness = static_cast<int>(brightness * intensityModulationFactor);
     }
     return min(255, brightness); // Ensure brightness doesn't exceed 255
 }
 
-float HRVJewelEmulator::calculateHRV() {
+float AfterglowJewelEmulator::calculateHRV() {
     // Calculate RMSSD (Root Mean Square of Successive Differences)
     float sumSquaredDiff = 0;
     int validIntervals = 0;

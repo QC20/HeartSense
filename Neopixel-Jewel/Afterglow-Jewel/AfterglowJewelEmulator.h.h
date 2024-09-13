@@ -1,11 +1,11 @@
-#ifndef HRV_JEWEL_EMULATOR_H
-#define HRV_JEWEL_EMULATOR_H
+#ifndef AFTERGLOW_JEWEL_EMULATOR_H
+#define AFTERGLOW_JEWEL_EMULATOR_H
 
 #include <Adafruit_NeoPixel.h>
 
-class HRVJewelEmulator {
+class AfterglowJewelEmulator {
 public:
-    HRVJewelEmulator(uint8_t pin, uint16_t numPixels);
+    AfterglowJewelEmulator(uint8_t pin, uint16_t numPixels);
     void begin();
     void update(unsigned long currentMillis, int currentRR);
     void setLEDs(int brightness);

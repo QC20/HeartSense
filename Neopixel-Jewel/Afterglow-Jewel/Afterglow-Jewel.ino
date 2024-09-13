@@ -1,5 +1,5 @@
 #include <uECG.h>
-#include "Afterglow-Jewel.h"
+#include "AfterglowJewelEmulator.h"
 
 #define PIN 6
 #define NUMPIXELS 7  // NeoPixel Jewel has 7 LEDs
