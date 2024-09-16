@@ -84,7 +84,7 @@ int ImprovedECGEmulator::getECGBrightness(uint16_t step, uint16_t totalSteps) {
 
 void ImprovedECGEmulator::setAllLEDs(int brightness) {
     for (int i = 0; i < pixels.numPixels(); i++) {
-        pixels.setPixelColor(i, pixels.Color(brightness, 0, 0, brightness / 4)); // Red + some white for better visibility
+        pixels.setPixelColor(i, pixels.Color(brightness, 0, 0, 0)); // Red only, no white
     }
 }
 

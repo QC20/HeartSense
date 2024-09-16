@@ -23,7 +23,7 @@ void HRVPulseModulator::update(float newHRV, unsigned long currentMillis) {
     // Calculate current brightness based on pulse timing
     uint8_t brightness = calculateBrightness(currentMillis);
 
-    // Set all LEDs to the calculated brightness
+    // Set all LEDs to red with the calculated brightness
     setAllLEDs(brightness);
 }
 
@@ -63,9 +63,9 @@ uint8_t HRVPulseModulator::calculateBrightness(unsigned long currentMillis) {
     }
 }
 
-// Set all LEDs to the specified brightness
+// Set all LEDs to red with the specified brightness
 void HRVPulseModulator::setAllLEDs(uint8_t brightness) {
     for (int i = 0; i < pixels.numPixels(); i++) {
-        pixels.setPixelColor(i, pixels.Color(brightness, brightness, brightness, brightness));
+        pixels.setPixelColor(i, pixels.Color(brightness, 0, 0, 0)); // Red only, no green, blue, or white
     }
 }

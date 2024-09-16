@@ -2,12 +2,12 @@
 #include "AfterglowJewelEmulator.h"
 
 #define PIN 6
-#define NUMPIXELS 7  // NeoPixel Jewel has 7 LEDs
+#define NUMPIXELS 12  // NeoPixel Jewel has 7 LEDs
 
 int rf_cen = 8; // nRF24 chip enable pin
 int rf_cs = 9;  // nRF24 CS pin
 
-HRVJewelEmulator hrvJewel(PIN, NUMPIXELS);
+AfterglowJewelEmulator AfterglowJewelEmulator(PIN, NUMPIXELS);
 
 unsigned long lastBeatTime = 0;
 int lastRRid = -1;
@@ -17,7 +17,7 @@ unsigned long ecgStartTime = 0;
 void setup() {
   Serial.begin(115200);
   uECG.begin(rf_cs, rf_cen);
-  hrvJewel.begin();
+  AfterglowJewelEmulator.begin();
 }
 
 void loop() {
@@ -36,17 +36,17 @@ void loop() {
     ecgStartTime = currentMillis;
 
     // Update the HRV Jewel with the new RR interval
-    hrvJewel.update(currentMillis - ecgStartTime, rr);
+    AfterglowJewelEmulator.update(currentMillis - ecgStartTime, rr);
   }
 
   if (playingECG) {
     int currentRR = uECG.getLastRR();
-    hrvJewel.update(currentMillis - ecgStartTime, currentRR);
+    AfterglowJewelEmulator.update(currentMillis - ecgStartTime, currentRR);
 
-    if (currentMillis - ecgStartTime >= hrvJewel.getCycleDuration(currentRR)) {
+    if (currentMillis - ecgStartTime >= AfterglowJewelEmulator.getCycleDuration(currentRR)) {
       playingECG = false;
-      hrvJewel.setLEDs(0);
-      hrvJewel.show();
+      AfterglowJewelEmulator.setLEDs(0);
+      AfterglowJewelEmulator.show();
     }
   }
 }
