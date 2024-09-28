@@ -4,8 +4,9 @@
 #define PIN 6
 #define NUMPIXELS 7  // NeoPixel Jewel has 7 LEDs
 
-int rf_cen = 8; // nRF24 chip enable pin
-int rf_cs = 9;  // nRF24 CS pin
+// Try changing these around if it does not work. Sometimes I have soldered them on vice versa. 
+int rf_cen = 9; // nRF24 chip enable pin
+int rf_cs = 8;  // nRF24 CS pin
 
 HRVJewelEmulator hrvJewel(PIN, NUMPIXELS);
 
