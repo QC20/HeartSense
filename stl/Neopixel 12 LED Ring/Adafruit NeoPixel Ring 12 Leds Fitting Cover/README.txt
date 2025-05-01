@@ -1,1 +1,0 @@
-Adafruit NeoPixel Ring 12 Leds Fitting Cover by DKoss on Thingiverse: https://www.thingiverse.com/thing:2023782

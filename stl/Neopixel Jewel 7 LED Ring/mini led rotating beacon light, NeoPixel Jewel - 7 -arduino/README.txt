@@ -1,1 +1,0 @@
-mini led rotating beacon light, NeoPixel Jewel - 7 -arduino by cpayret on Thingiverse: https://www.thingiverse.com/thing:4889837

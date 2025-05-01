@@ -1,1 +1,0 @@
-BBC Microbit Neopixel Lamp by robotonics on Thingiverse: https://www.thingiverse.com/thing:2571408

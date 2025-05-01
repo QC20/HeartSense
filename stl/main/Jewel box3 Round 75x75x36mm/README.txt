@@ -1,1 +1,0 @@
-Jewel box3 Round 75x75x36mm by fay on Thingiverse: https://www.thingiverse.com/thing:2041207

@@ -1,1 +1,0 @@
-Flora Neopixel diffuser by iotdesignshop on Thingiverse: https://www.thingiverse.com/thing:1159746

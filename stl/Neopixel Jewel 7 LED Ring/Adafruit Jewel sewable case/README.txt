@@ -1,1 +1,0 @@
-Adafruit Jewel sewable case by cschmitz81 on Thingiverse: https://www.thingiverse.com/thing:3209885
