@@ -1,0 +1,1 @@
+Shorter dome for trådfri E14 lamp by deckardpj on Thingiverse: https://www.thingiverse.com/thing:3840841
