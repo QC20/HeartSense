@@ -1,0 +1,33 @@
+#Ask for ideas to show rate of change
+
+I have made the following project that uses the uECG device to get my heart rate and projects it to an 12 LED ring. As you can see in its current form it will emulate an ECG signal/diagram because I dont think I can get good enough ECG signal to actually project the real ecg data and that's fine too. So therefore I have chosen to get the heart rate and just put on an emulated ECG signal for each heart rate being shown. The reason for that I have tried to adjust the intensity of the LEDs so much as I have is because I want them to initially be as dim as possible. Also, what might be worth knowing for you is that my heart rate will normally hover around 50 bpm when being at rest and maybe upwards of 130 when working hard. 
+
+The thing I want to add to the code is some way of showing the change in heart rate. This is the interesting part. It is not when its swinging around 55-65, but when it goes from 65-90 all of a sudden in a relatively short time indicating that something has rattled me or I show a clear response to the external. This is the interesting part. To figure out a way to show a sudden rise or drop in bpm values. 
+
+Now, what I will be asking you about is if you have some ideas as to how I might show this change. Like some type of indication if my heart rate suddenly goes up in a fast manner. I would like that to be shown in some way. The thing is that we are still restricted to constantly showing the actualy heart rate, so this is one thing we cannot change. I will not be using other colors than red. And for now I won't be using the lights in different ways. The will all act uniformly. 
+
+Before you go ahead and do any implementations please list a couple of ideas as to what I can consider within the confines of what I have listed here. 
+
+##Answer
+
+**1.    
+**Pulse Width Modulation:** Rapidly alternate between the normal ECG pattern and a slightly brighter version, creating a pulsing effect when a sudden change is detected.
+**Frequency Modulation:** Slightly speed up or slow down the ECG animation cycle when a significant change is detected, while still maintaining the correct beats per minute.
+**2. "Afterglow" Effect:** When a sudden change is detected, make the R wave (peak) of the ECG pattern linger at full brightness for a moment longer than usual before fading.
+**Double Pulse:** For a short time after detecting a significant change, show two R waves (peaks) close together instead of one, creating a "double beat" visual effect.
+**3. Brightness Ramping:** Gradually increase the overall brightness of the LEDs over a few seconds when a change is detected, then slowly fade back to normal.
+**Extended QRS Complex:** Temporarily widen the QRS complex (the main spike) of the ECG pattern, making it more prominent for a few cycles after a significant change is detected.
+**Baseline Shift:** Temporarily raise the baseline brightness of the entire pattern when a sudden change is detected, then gradually return it to normal.
+
+
+
+# Ask about using HRV
+
+Please consider the following arduino project. Now, I use the bpm to determine whether the LED should issue a particular response depending on whether the heart rate BPM is going up or slowing down. 
+
+As you can see I can also fetch the HRV from the heart data. 
+
+I am considering whether I can use this data metric as well to do something that will help me determine whther the person is actually starting to stress or is starting to relax. The core idea of this project is to figure out a way to protray this change in heart rate and find a way to show that with LED in a single uniform way. 
+
+Can you give me some suggestions as to how I can make use of the HRV to make my project better. 
+
